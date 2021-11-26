@@ -4,7 +4,7 @@
         
         $.ajax(
             {
-                url : ajax.ajaxurl,
+                url : ajax.url,
                 type : 'post',
                 data : {
                     action : 'get_modal',
