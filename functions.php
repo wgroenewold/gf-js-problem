@@ -3,6 +3,17 @@
 	add_filter( 'gform_form_tag', 'form_tag');
 	add_action('wp_enqueue_scripts', 'add_styles');
 
+	function add_styles(){
+		wp_enqueue_style( 'bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
+		wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js');
+		wp_enqueue_style( 'style-css', get_template_directory_uri() . '/style.css');
+
+		wp_enqueue_script('main-js', get_template_directory_uri() . '/main.js', array('jquery', 'bootstrap-js'), false, true);
+		wp_localize_script( 'main-js', 'ajax', array(
+			'url' => admin_url( 'admin-ajax.php')
+		) );
+	}
+
 	function get_modal(){
 		$data = $_POST;
 
